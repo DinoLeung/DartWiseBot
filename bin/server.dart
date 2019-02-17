@@ -34,27 +34,11 @@ void main() {
       .onCommand('draw')
       .listen((Message message) => teledart.replyMessage(message, card()));
 
-  teledart.onCommand('pick').listen((Message message) {
-    List<String> choices = getCommandQuery(message)
-        .split(',')
-        .map((String str) => str.trim())
-        .where((String str) => str.isNotEmpty)
-        .toList();
+  teledart.onCommand('pick').listen((Message message) =>
+      teledart.replyMessage(message, pick(message), parse_mode: 'markdown'));
 
-    if (choices.isEmpty) return teledart.replyMessage(message, invalidChoices);
-
-    if (choices.length == 1)
-      return teledart.replyMessage(message, oneChoice(choices[0]));
-
-    return teledart.replyMessage(message, theOne(choices, pick(choices)),
-        parse_mode: 'markdown');
-  });
-
-  teledart.onCommand('learn').listen((Message message) {
-    String keywords = getCommandQuery(message);
-    return teledart.replyMessage(message, letMeGoogle(keywords),
-        parse_mode: 'markdown');
-  });
+  teledart.onCommand('learn').listen((Message message) =>
+      teledart.replyMessage(message, learn(message), parse_mode: 'markdown'));
 
   teledart.onCommand('suggest').listen((Message message) {
     String suggestions = getCommandQuery(message);

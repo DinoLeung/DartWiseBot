@@ -6,7 +6,7 @@ import 'package:DartWiseBot/variables.dart';
 import 'package:DartWiseBot/functions.dart';
 
 void main() {
-  final Telegram telegram = new Telegram(envVars['WISE_BOT_TOKEN']);
+  final Telegram telegram = new Telegram(envVars['BOT_TOKEN']);
   final TeleDart teledart = new TeleDart(telegram, new Event());
 
   teledart.startFetching();

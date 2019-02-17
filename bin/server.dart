@@ -28,7 +28,7 @@ void main() {
 
   teledart
       .onCommand('roll')
-      .listen((Message message) => teledart.replyMessage(message, die()));
+      .listen((Message message) => teledart.replyMessage(message, roll()));
 
   teledart
       .onCommand('draw')

@@ -4,7 +4,7 @@ import 'variables.dart';
 
 String coin() => Random().nextBool() ? 'Heads' : 'Tails';
 
-String die() => (Random().nextInt(5) + 1).toString();
+String roll() => (Random().nextInt(5) + 1).toString();
 
 String card() =>
     '${suits[Random().nextInt(suits.length)]} ${ranks[Random().nextInt(ranks.length)]}';
@@ -30,5 +30,6 @@ String pick(Message message) {
 
 String learn(Message message) {
   String keywords = getCommandQuery(message);
+  if (keywords.isEmpty) return theHeartSutra;
   return letMeGoogle(keywords);
 }

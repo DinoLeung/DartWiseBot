@@ -1,46 +1,13 @@
 import 'dart:io' show Platform;
+import 'dart:io' show File;
 
 final Map<String, String> envVars = Platform.environment;
 
-final String startMsg =
-    '''Greetings! I am the Wise, I can help with all your decisions. 🧙
+final String startMsg = File('docs/start').readAsStringSync();
 
-You can simply \/flip a 🌝, \/roll a 🎲, or even \/roll3 🎲 at a time.
+final String helpMsg = File('docs/help').readAsStringSync();
 
-You can also \/draw a 🃏 from a stack. If you wish you can enable \/singlestack mode to \/draw 🃏 from the same stack until you \/shuffle the stack.
-
-Or I can help you \/pick the one from your choices
-
-You can always \/learn stuff from me, just ask!
-
-\/suggest your favourite decision making method if I can't provide you yet, the universe may accept your suggestions
-
-
-Ask \/help for more.''';
-
-final String helpMsg =
-    '''Greetings! I am the Wise, I can help with all your decisions. 🧙
-
-*Coins*
-\/flip - flip a 🌝
-
-*Dices*
-\/roll - roll a 🎲
-\/roll3 - roll 🎲🎲🎲
-
-*Cards*
-\/draw - draw a 🃏 from a stack
-\/singlestack - toggle single stack mode
-\/shuffle - reset the stack when \/singlestack is toggled
-
-*Choices*
-\/pick - make the decision from your choices
-
-*Others*
-\/learn - learn from the wise
-\/suggest - suggest a decision making method, or sharenyour view of the universe
-\/nerddrink - buy the wise a nerd drink, he needs energy to make decisions
-\/github - check out how the wise looks like under the hood''';
+final String theHeartSutra = File('docs/the_heart_sutra').readAsStringSync();
 
 final List<String> suits = ['♠️', '♥️', '♣️', '♦️'];
 

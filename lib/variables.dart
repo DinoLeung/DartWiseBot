@@ -9,6 +9,8 @@ final String helpMsg = File('docs/help').readAsStringSync();
 
 final String theHeartSutra = File('docs/the_heart_sutra').readAsStringSync();
 
+final String githubMsg = File('docs/github').readAsStringSync();
+
 final List<String> suits = ['♠️', '♥️', '♣️', '♦️'];
 
 final List<String> ranks = [
@@ -36,13 +38,6 @@ String oneChoice(String choice) =>
 String theOne(List<String> choices, String choice) =>
     '''Out of ${choices.join(', ')}
 *${choice}* has to be the one. 😉''';
-
-final String githubMsg =
-    '''@TheWiseBot is on [GitHub](https://github.com/DinoLeung/DartWiseBot)
-    
-    If you can make me more wise, please fork me!
-    Pull reqiestes are highly welcome!
-    ''';
 
 String letMeGoogle(String keywords) {
   String query = keywords

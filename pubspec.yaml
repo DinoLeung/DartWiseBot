@@ -9,7 +9,7 @@ environment:
 
 dependencies:
 #  path: ^1.4.1
-  teledart: ^0.0.25
+  teledart: ^0.0.26
 
 dev_dependencies:
   pedantic: ^1.1.0

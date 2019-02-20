@@ -18,9 +18,8 @@ void main() {
   teledart.onCommand('help').listen((Message message) =>
       teledart.replyMessage(message, helpMsg, parse_mode: 'markdown'));
 
-  teledart
-      .onCommand('github')
-      .listen((Message message) => teledart.replyMessage(message, githubMsg));
+  teledart.onCommand('github').listen((Message message) =>
+      teledart.replyMessage(message, githubMsg, parse_mode: 'markdown'));
 
   teledart
       .onCommand('flip')

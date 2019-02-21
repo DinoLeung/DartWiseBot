@@ -18,7 +18,7 @@ void main() {
   teledart.onCommand('help').listen((Message message) =>
       teledart.replyMessage(message, helpMsg, parse_mode: 'markdown'));
 
-  teledart.onCommand('github').listen((Message message) =>
+  teledart.onCommand('about').listen((Message message) =>
       teledart.replyMessage(message, githubMsg, parse_mode: 'markdown'));
 
   teledart
@@ -27,17 +27,19 @@ void main() {
 
   teledart
       .onCommand('roll')
-      .listen((Message message) => teledart.replyMessage(message, roll()));
+      .listen((Message message) => teledart.replyMessage(message, die()));
 
   teledart
       .onCommand('draw')
       .listen((Message message) => teledart.replyMessage(message, card()));
 
-  teledart.onCommand('pick').listen((Message message) =>
-      teledart.replyMessage(message, pick(message), parse_mode: 'markdown'));
+  teledart.onCommand('pick').listen((Message message) => teledart.replyMessage(
+      message, pick(getCommandQuery(message)),
+      parse_mode: 'markdown'));
 
-  teledart.onCommand('learn').listen((Message message) =>
-      teledart.replyMessage(message, learn(message), parse_mode: 'markdown'));
+  teledart.onCommand('learn').listen((Message message) => teledart.replyMessage(
+      message, learn(getCommandQuery(message)),
+      parse_mode: 'markdown'));
 
   teledart.onCommand('suggest').listen((Message message) {
     String suggestions = getCommandQuery(message);
@@ -48,5 +50,43 @@ void main() {
     telegram.sendMessage(int.parse(envVars['MYID']),
         suggestionMsg(message.from.username, suggestions));
     return teledart.replyMessage(message, validSuggestions);
+  });
+
+  teledart.onInlineQuery().listen((InlineQuery inlineQuery) {
+    List<InlineQueryResult> results = [
+      new InlineQueryResultArticle()
+        ..id = 'flip'
+        ..title = '🌝'
+        ..input_message_content = (new InputTextMessageContent()
+          ..message_text = coin()
+          ..parse_mode = 'markdown'),
+      new InlineQueryResultArticle()
+        ..id = 'roll'
+        ..title = '🎲'
+        ..input_message_content = (new InputTextMessageContent()
+          ..message_text = die()
+          ..parse_mode = 'markdown'),
+      new InlineQueryResultArticle()
+        ..id = 'draw'
+        ..title = '🃏'
+        ..input_message_content = (new InputTextMessageContent()
+          ..message_text = card()
+          ..parse_mode = 'markdown'),
+      new InlineQueryResultArticle()
+        ..id = 'pick'
+        ..title = 'Pick from'
+        ..description = '🅰️, 🅱️,...'
+        ..input_message_content = (new InputTextMessageContent()
+          ..message_text = pick(inlineQuery.query)
+          ..parse_mode = 'markdown'),
+      new InlineQueryResultArticle()
+        ..id = 'learn'
+        ..title = 'Ask the wise...'
+        ..description = '🧙'
+        ..input_message_content = (new InputTextMessageContent()
+          ..message_text = learn(inlineQuery.query)
+          ..parse_mode = 'markdown'),
+    ];
+    teledart.answerInlineQuery(inlineQuery, results);
   });
 }

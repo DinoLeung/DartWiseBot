@@ -4,7 +4,7 @@ import 'variables.dart';
 
 String coin() => Random().nextBool() ? 'Heads' : 'Tails';
 
-String roll() => (Random().nextInt(5) + 1).toString();
+String die() => (Random().nextInt(5) + 1).toString();
 
 String card() =>
     '${suits[Random().nextInt(suits.length)]} ${ranks[Random().nextInt(ranks.length)]}';
@@ -14,8 +14,8 @@ String getCommandQuery(Message message) {
   return message.text.substring(entity.offset + entity.length).trim();
 }
 
-String pick(Message message) {
-  List<String> choices = getCommandQuery(message)
+String pick(String query) {
+  List<String> choices = query
       .split(',')
       .map((String str) => str.trim())
       .where((String str) => str.isNotEmpty)
@@ -28,8 +28,7 @@ String pick(Message message) {
   return theOne(choices, choices[Random().nextInt(choices.length)]);
 }
 
-String learn(Message message) {
-  String keywords = getCommandQuery(message);
-  if (keywords.isEmpty) return theHeartSutra;
-  return letMeGoogle(keywords);
+String learn(String query) {
+  if (query.isEmpty) return theHeartSutra;
+  return letMeGoogle(query);
 }

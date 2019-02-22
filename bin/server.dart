@@ -6,8 +6,8 @@ import 'package:DartWiseBot/variables.dart';
 import 'package:DartWiseBot/functions.dart';
 
 void main() {
-  final Telegram telegram = new Telegram(envVars['BOT_TOKEN']);
-  final TeleDart teledart = new TeleDart(telegram, new Event());
+  final Telegram telegram = Telegram(envVars['BOT_TOKEN']);
+  final TeleDart teledart = TeleDart(telegram, Event());
 
   teledart.startFetching();
 
@@ -54,36 +54,36 @@ void main() {
 
   teledart.onInlineQuery().listen((InlineQuery inlineQuery) {
     List<InlineQueryResult> results = [
-      new InlineQueryResultArticle()
+      InlineQueryResultArticle()
         ..id = 'flip'
         ..title = '🌝'
-        ..input_message_content = (new InputTextMessageContent()
+        ..input_message_content = (InputTextMessageContent()
           ..message_text = coin()
           ..parse_mode = 'markdown'),
-      new InlineQueryResultArticle()
+      InlineQueryResultArticle()
         ..id = 'roll'
         ..title = '🎲'
-        ..input_message_content = (new InputTextMessageContent()
+        ..input_message_content = (InputTextMessageContent()
           ..message_text = die()
           ..parse_mode = 'markdown'),
-      new InlineQueryResultArticle()
+      InlineQueryResultArticle()
         ..id = 'draw'
         ..title = '🃏'
-        ..input_message_content = (new InputTextMessageContent()
+        ..input_message_content = (InputTextMessageContent()
           ..message_text = card()
           ..parse_mode = 'markdown'),
-      new InlineQueryResultArticle()
+      InlineQueryResultArticle()
         ..id = 'pick'
         ..title = 'Pick from'
         ..description = '🅰️, 🅱️,...'
-        ..input_message_content = (new InputTextMessageContent()
+        ..input_message_content = (InputTextMessageContent()
           ..message_text = pick(inlineQuery.query)
           ..parse_mode = 'markdown'),
-      new InlineQueryResultArticle()
+      InlineQueryResultArticle()
         ..id = 'learn'
         ..title = 'Ask the wise...'
         ..description = '🧙'
-        ..input_message_content = (new InputTextMessageContent()
+        ..input_message_content = (InputTextMessageContent()
           ..message_text = learn(inlineQuery.query)
           ..parse_mode = 'markdown'),
     ];

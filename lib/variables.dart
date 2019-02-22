@@ -3,13 +3,13 @@ import 'dart:io' show File;
 
 final Map<String, String> envVars = Platform.environment;
 
-final String startMsg = File('docs/start').readAsStringSync();
+final String startMsg = File('txt/start').readAsStringSync();
 
-final String helpMsg = File('docs/help').readAsStringSync();
+final String helpMsg = File('txt/help').readAsStringSync();
 
-final String theHeartSutra = File('docs/the_heart_sutra').readAsStringSync();
+final String theHeartSutra = File('txt/the_heart_sutra').readAsStringSync();
 
-final String githubMsg = File('docs/github').readAsStringSync();
+final String githubMsg = File('txt/github').readAsStringSync();
 
 final List<String> suits = ['♠️', '♥️', '♣️', '♦️'];
 
@@ -47,7 +47,7 @@ String letMeGoogle(String keywords) {
       .toList()
       .join('+');
   return '''Any fool can know. The point is to understand.
-I found a lot regarding to *${keywords.trim()}* you could know [here](http://lmgtfy.com/?iie=1&q=${query})
+I found a lot regarding to *${keywords.trim()}* you could know [here](http://lmgtfy.com/?iie=1&q=${query}).
 But can you understand, it's entirely depends on you.''';
 }
 

@@ -18,8 +18,9 @@ void main() {
   teledart.onCommand('help').listen((Message message) =>
       teledart.replyMessage(message, helpMsg, parse_mode: 'markdown'));
 
-  teledart.onCommand('about').listen((Message message) =>
-      teledart.replyMessage(message, githubMsg, parse_mode: 'markdown'));
+  teledart.onCommand('about').listen((Message message) => teledart.replyMessage(
+      message, githubMsg,
+      parse_mode: 'markdown', disable_web_page_preview: true));
 
   teledart
       .onCommand('flip')
@@ -39,7 +40,7 @@ void main() {
 
   teledart.onCommand('learn').listen((Message message) => teledart.replyMessage(
       message, learn(getCommandQuery(message)),
-      parse_mode: 'markdown'));
+      parse_mode: 'markdown', disable_web_page_preview: true));
 
   teledart.onCommand('suggest').listen((Message message) {
     String suggestions = getCommandQuery(message);

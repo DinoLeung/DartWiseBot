@@ -30,7 +30,7 @@ final List<String> ranks = [
 ];
 
 final String invalidChoices =
-    'Huh? My hearing isn\'t too well. Try again with following pattern: \/pick 🅰️, 🅱️, ...';
+    'Huh? My hearing isn\'t too well. Try again with following pattern: \/pick 🅰️, 🅱️,...';
 
 String oneChoice(String choice) =>
     '${choice} is the one and the only one. Unlike the universe, there\'re multiple of them existing parallely.';

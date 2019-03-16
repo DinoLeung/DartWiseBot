@@ -16,9 +16,9 @@ Just start a conversation to [@TheWiseBot](https://t.me/TheWiseBot), or add him 
 
 `/suggest` - suggest a decision making method
 
-## Built with
+## dependancy
 [@TheWiseBot](https://t.me/TheWiseBot) is a weekend project, and just for the memes.
-Which built upon
+Which powered by
 * [TeleDart](https://github.com/DinoLeung/TeleDart) - A Dart library wrapped the latest [Telegram Bot API](https://core.telegram.org/bots/api)
 
 ## Deploy

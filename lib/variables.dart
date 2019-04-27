@@ -1,7 +1,15 @@
 import 'dart:io' show Platform;
 import 'dart:io' show File;
 
+import 'package:teledart/model.dart' show User;
+
+User me;
+
 final Map<String, String> envVars = Platform.environment;
+
+final File cert = File(envVars['CERT_PATH']);
+
+final File key = File(envVars['KEY_PATH']);
 
 final String startMsg = File('txt/start').readAsStringSync();
 
@@ -29,8 +37,8 @@ final List<String> ranks = [
   'K',
 ];
 
-final String invalidChoices =
-    'Huh? My hearing isn\'t too well. Try again with following pattern: \/pick 🅰️, 🅱️,...';
+String invalidChoices({bool hasUsername = false}) =>
+    'Huh? My hearing isn\'t too well. Try again with following pattern: \/pick${hasUsername ? '\@${me.username}' : ''} 🅰️, 🅱️,...';
 
 String oneChoice(String choice) =>
     '${choice} is the one and the only one. Unlike the universe, there\'re multiple of them existing parallely.';
@@ -51,8 +59,8 @@ I found a lot regarding to *${keywords.trim()}* you could know [here](http://lmg
 But can you understand, it's entirely depends on you.''';
 }
 
-final String invalidSuggestions =
-    'Huh? My hearing isn\'t too well. Try again with \/suggest and follow by your suggestions. The universe won\'t accept blank suggestions.';
+String invalidSuggestions({bool hasUsername = false}) =>
+    'Huh? My hearing isn\'t too well. Try again with \/suggest${hasUsername ? '\@${me.username}' : ''} and follow by your suggestions. The universe won\'t accept blank suggestions.';
 
 final String validSuggestions =
     'May the universe be with you, I will look into this soon. 💪';

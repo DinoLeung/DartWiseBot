@@ -14,14 +14,21 @@ String getCommandQuery(Message message) {
   return message.text.substring(entity.offset + entity.length).trim();
 }
 
-String pick(String query) {
+bool commandHasUsername(Message message) {
+  MessageEntity entity = message.entityOf('bot_command');
+  return message.text
+      .substring(entity.offset, entity.offset + entity.length)
+      .contains('@${me.username}');
+}
+
+String pick(String query, bool hasUsername) {
   List<String> choices = query
       .split(',')
       .map((String str) => str.trim())
       .where((String str) => str.isNotEmpty)
       .toList();
 
-  if (choices.isEmpty) return invalidChoices;
+  if (choices.isEmpty) return invalidChoices(hasUsername: hasUsername);
 
   if (choices.length == 1) return oneChoice(choices[0]);
 

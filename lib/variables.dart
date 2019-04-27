@@ -1,9 +1,12 @@
-import 'dart:io' show Platform;
+import 'dart:io' show Directory;
 import 'dart:io' show File;
+import 'dart:io' show Platform;
 
 import 'package:teledart/model.dart' show User;
 
 User me;
+
+final String root = Directory.fromUri(Platform.script).parent.parent.path;
 
 final Map<String, String> envVars = Platform.environment;
 
@@ -11,13 +14,14 @@ final File cert = File(envVars['CERT_PATH']);
 
 final File key = File(envVars['KEY_PATH']);
 
-final String startMsg = File('txt/start').readAsStringSync();
+final String startMsg = File('${root}/txt/start').readAsStringSync();
 
-final String helpMsg = File('txt/help').readAsStringSync();
+final String helpMsg = File('${root}/txt/help').readAsStringSync();
 
-final String theHeartSutra = File('txt/the_heart_sutra').readAsStringSync();
+final String theHeartSutra =
+    File('${root}/txt/the_heart_sutra').readAsStringSync();
 
-final String githubMsg = File('txt/github').readAsStringSync();
+final String githubMsg = File('${root}/txt/github').readAsStringSync();
 
 final List<String> suits = ['♠️', '♥️', '♣️', '♦️'];
 

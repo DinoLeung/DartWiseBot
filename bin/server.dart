@@ -6,10 +6,12 @@ import 'package:DartWiseBot/variables.dart';
 import 'package:DartWiseBot/functions.dart';
 
 void main() {
-  final Telegram telegram = Telegram(envVars['BOT_TOKEN']);
-  final TeleDart teledart = TeleDart(telegram, Event());
+  final TeleDart teledart = TeleDart(Telegram(envVars['BOT_TOKEN']), Event());
 
-  teledart.startFetching();
+  teledart.setupWebhook(envVars['HOST_URL'], envVars['BOT_TOKEN'], cert, key,
+      port: int.parse(envVars['BOT_PORT']));
+
+  teledart.start(webhook: true).then((User user) => me = user);
 
   teledart
       .onCommand('start')
@@ -35,7 +37,7 @@ void main() {
       .listen((Message message) => teledart.replyMessage(message, card()));
 
   teledart.onCommand('pick').listen((Message message) => teledart.replyMessage(
-      message, pick(getCommandQuery(message)),
+      message, pick(getCommandQuery(message), commandHasUsername(message)),
       parse_mode: 'markdown'));
 
   teledart.onCommand('learn').listen((Message message) => teledart.replyMessage(
@@ -46,9 +48,10 @@ void main() {
     String suggestions = getCommandQuery(message);
 
     if (suggestions.isEmpty)
-      return teledart.replyMessage(message, invalidSuggestions);
+      return teledart.replyMessage(message,
+          invalidSuggestions(hasUsername: commandHasUsername(message)));
 
-    telegram.sendMessage(int.parse(envVars['MYID']),
+    teledart.telegram.sendMessage(int.parse(envVars['MYID']),
         suggestionMsg(message.from.username, suggestions));
     return teledart.replyMessage(message, validSuggestions);
   });
@@ -78,7 +81,7 @@ void main() {
         ..title = 'Pick from'
         ..description = '🅰️, 🅱️,...'
         ..input_message_content = (InputTextMessageContent()
-          ..message_text = pick(inlineQuery.query)
+          ..message_text = pick(inlineQuery.query, false)
           ..parse_mode = 'markdown'),
       InlineQueryResultArticle()
         ..id = 'learn'

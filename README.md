@@ -30,4 +30,8 @@ Check out https://hub.docker.com/r/google/dart-runtime/
 ```
 BOT_TOKEN: <bot token obtain from @BotFather
 MYID: <user id to send feedbacks to>
+HOST_URL: <webhook host url>
+BOT_PORT: <webhook port>
+CERT_PATH: <path to ssl certificate>
+KEY_PATH: <path to ssl private key>
 ```

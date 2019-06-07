@@ -23,9 +23,9 @@ final String theHeartSutra =
 
 final String githubMsg = File('${root}/txt/github').readAsStringSync();
 
-final List<String> suits = ['♠️', '♥️', '♣️', '♦️'];
+final List<String> suits = <String>['♠️', '♥️', '♣️', '♦️'];
 
-final List<String> ranks = [
+final List<String> ranks = <String>[
   'A',
   '2',
   '3',

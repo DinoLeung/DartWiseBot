@@ -51,7 +51,7 @@ class Responds {
   }
 
   Future<bool> answerInlineQuery(InlineQuery inlineQuery) =>
-      _teledart.answerInlineQuery(inlineQuery, [
+      _teledart.answerInlineQuery(inlineQuery, <InlineQueryResult>[
         InlineQueryResultArticle()
           ..id = 'flip'
           ..title = '🌝'

@@ -22,7 +22,7 @@ void main() {
     ..onCommand('help').listen(respond.sendHelpMessage)
     ..onCommand('about').listen(respond.sendAboutMessage)
     ..onCommand('flip').listen(respond.sendCoinMessage)
-    ..onCommand('roll').listen(respond.sendDieMessage)
+    ..onCommand('roll').listen(respond.sendDice)
     ..onCommand('draw').listen(respond.sendCardMessage)
     ..onCommand('pick').listen(respond.sendChoiceMessage)
     ..onCommand('learn').listen(respond.sendWiseMessage)

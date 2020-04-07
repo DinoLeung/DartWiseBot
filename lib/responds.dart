@@ -41,14 +41,18 @@ class Responds {
   Future<Message> sendSuggestMessage(Message message) {
     String suggestions = getCommandQuery(message);
 
-    if (suggestions.isEmpty)
+    if (suggestions.isEmpty) {
       return _teledart.replyMessage(message,
           invalidSuggestions(hasUsername: commandHasUsername(message)));
+    }
 
     _teledart.telegram.sendMessage(int.parse(envVars['MYID']),
         suggestionMsg(message.from.username, suggestions));
     return _teledart.replyMessage(message, validSuggestions);
   }
+
+  Future<Message> sendDice(Message message) =>
+      _teledart.telegram.sendDice(message.chat.id);
 
   Future<bool> answerInlineQuery(InlineQuery inlineQuery) =>
       _teledart.answerInlineQuery(inlineQuery, <InlineQueryResult>[

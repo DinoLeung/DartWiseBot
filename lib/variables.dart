@@ -2,7 +2,7 @@ import 'dart:io' show Directory;
 import 'dart:io' show File;
 import 'dart:io' show Platform;
 
-import 'package:teledart/model.dart' show User;
+import 'package:teledart/model.dart' show User, BotCommand;
 
 User me;
 
@@ -71,3 +71,19 @@ final String validSuggestions =
 
 String suggestionMsg(String username, String suggestions) =>
     '@${username} suggested to ${suggestions}';
+
+List<BotCommand> commands = <BotCommand>[
+  BotCommand(command: '\/flip', description: 'flip a 🌝'),
+  BotCommand(command: '\/roll', description: 'roll a 🎲'),
+  BotCommand(command: '\/draw', description: 'draw a 🃏'),
+  BotCommand(
+      command: '\/pick', description: 'make the decision from your choices'),
+  BotCommand(command: '/learn', description: 'learn from the wise'),
+  BotCommand(
+      command: '\/suggest',
+      description:
+          'suggest a decision making method, or share your view of the universe with me'),
+  BotCommand(
+      command: '\/about',
+      description: 'check out how the wise looks like under the hood'),
+];

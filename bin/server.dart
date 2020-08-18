@@ -17,7 +17,10 @@ void main() {
       key,
       port: int.parse(envVars['BOT_PORT']),
     )
-    ..start(webhook: true).then((User user) => me = user)
+    ..start(webhook: true).then((User user) async {
+      me = user;
+      await teledart.telegram.setMyCommands(commands);
+    })
     ..onCommand('start').listen(respond.sendStartMessage)
     ..onCommand('help').listen(respond.sendHelpMessage)
     ..onCommand('about').listen(respond.sendAboutMessage)

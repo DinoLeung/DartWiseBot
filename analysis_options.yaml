@@ -5,7 +5,6 @@ analyzer:
 # Lint rules and documentation, see http://dart-lang.github.io/linter/lints
 linter:
   rules:
-    - always_specify_types
     - cancel_subscriptions
     - hash_and_equals
     - iterable_contains_unrelated_type

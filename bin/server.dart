@@ -6,18 +6,15 @@ import 'package:DartWiseBot/variables.dart';
 import 'package:DartWiseBot/responds.dart';
 
 void main() {
-  final TeleDart teledart = TeleDart(Telegram(envVars['BOT_TOKEN']), Event());
-  final Responds respond = Responds(teledart);
+  final telegram = Telegram(envVars['BOT_TOKEN']);
+  final webhook =
+      Webhook(telegram, envVars['HOST_URL'], envVars['BOT_TOKEN'], cert, key)
+        ..port = int.parse(envVars['BOT_PORT']);
+  final teledart = TeleDart(telegram, Event(), fetcher: webhook);
+  final respond = Responds(teledart);
 
   teledart
-    ..setupWebhook(
-      envVars['HOST_URL'],
-      envVars['BOT_TOKEN'],
-      cert,
-      key,
-      port: int.parse(envVars['BOT_PORT']),
-    )
-    ..start(webhook: true).then((User user) async {
+    ..start().then((User user) async {
       me = user;
       await teledart.telegram.setMyCommands(commands);
     })

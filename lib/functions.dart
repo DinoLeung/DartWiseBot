@@ -10,19 +10,19 @@ String card() =>
     '${suits[Random().nextInt(suits.length)]} ${ranks[Random().nextInt(ranks.length)]}';
 
 String getCommandQuery(Message message) {
-  MessageEntity entity = message.entityOf('bot_command');
+  var entity = message.entityOf('bot_command');
   return message.text.substring(entity.offset + entity.length).trim();
 }
 
 bool commandHasUsername(Message message) {
-  MessageEntity entity = message.entityOf('bot_command');
+  var entity = message.entityOf('bot_command');
   return message.text
       .substring(entity.offset, entity.offset + entity.length)
       .contains('@${me.username}');
 }
 
 String pick(String query, bool hasUsername) {
-  List<String> choices = query
+  var choices = query
       .split(',')
       .map((String str) => str.trim())
       .where((String str) => str.isNotEmpty)

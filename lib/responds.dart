@@ -4,6 +4,8 @@ import 'package:teledart/model.dart';
 import 'package:DartWiseBot/variables.dart';
 import 'package:DartWiseBot/functions.dart';
 
+import 'variables.dart';
+
 class Responds {
   static TeleDart _teledart;
 
@@ -11,51 +13,50 @@ class Responds {
     _teledart = teledart;
   }
 
-  Future<Message> sendStartMessage(Message message) =>
-      _teledart.replyMessage(message, startMsg);
+  Future<Message> sendStartMessage(TeleDartMessage message) =>
+      message.reply(startMsg);
 
-  Future<Message> sendHelpMessage(Message message) =>
-      _teledart.replyMessage(message, helpMsg, parse_mode: 'markdown');
+  Future<Message> sendHelpMessage(TeleDartMessage message) =>
+      message.reply(helpMsg, parse_mode: 'markdown');
 
-  Future<Message> sendAboutMessage(Message message) =>
-      _teledart.replyMessage(message, githubMsg,
+  Future<Message> sendAboutMessage(TeleDartMessage message) => message
+      .reply(githubMsg, parse_mode: 'markdown', disable_web_page_preview: true);
+
+  Future<Message> sendCoinMessage(TeleDartMessage message) =>
+      message.reply(coin());
+
+  Future<Message> sendDieMessage(TeleDartMessage message) =>
+      message.reply(die());
+
+  Future<Message> sendCardMessage(TeleDartMessage message) =>
+      message.reply(card());
+
+  Future<Message> sendChoiceMessage(TeleDartMessage message) =>
+      message.reply(pick(getCommandQuery(message), commandHasUsername(message)),
+          parse_mode: 'markdown');
+
+  Future<Message> sendWiseMessage(TeleDartMessage message) =>
+      message.reply(learn(getCommandQuery(message)),
           parse_mode: 'markdown', disable_web_page_preview: true);
 
-  Future<Message> sendCoinMessage(Message message) =>
-      _teledart.replyMessage(message, coin());
-
-  Future<Message> sendDieMessage(Message message) =>
-      _teledart.replyMessage(message, die());
-
-  Future<Message> sendCardMessage(Message message) =>
-      _teledart.replyMessage(message, card());
-
-  Future<Message> sendChoiceMessage(Message message) => _teledart.replyMessage(
-      message, pick(getCommandQuery(message), commandHasUsername(message)),
-      parse_mode: 'markdown');
-
-  Future<Message> sendWiseMessage(Message message) =>
-      _teledart.replyMessage(message, learn(getCommandQuery(message)),
-          parse_mode: 'markdown', disable_web_page_preview: true);
-
-  Future<Message> sendSuggestMessage(Message message) {
-    String suggestions = getCommandQuery(message);
+  Future<Message> sendSuggestMessage(TeleDartMessage message) {
+    var suggestions = getCommandQuery(message);
 
     if (suggestions.isEmpty) {
-      return _teledart.replyMessage(message,
-          invalidSuggestions(hasUsername: commandHasUsername(message)));
+      return message
+          .reply(invalidSuggestions(hasUsername: commandHasUsername(message)));
     }
 
     _teledart.telegram.sendMessage(int.parse(envVars['MYID']),
         suggestionMsg(message.from.username, suggestions));
-    return _teledart.replyMessage(message, validSuggestions);
+    return message.reply(validSuggestions);
   }
 
-  Future<Message> sendDice(Message message) =>
+  Future<Message> sendDice(TeleDartMessage message) =>
       _teledart.telegram.sendDice(message.chat.id);
 
-  Future<bool> answerInlineQuery(InlineQuery inlineQuery) =>
-      _teledart.answerInlineQuery(inlineQuery, <InlineQueryResult>[
+  Future<bool> answerInlineQuery(TeleDartInlineQuery inlineQuery) =>
+      inlineQuery.answer(<InlineQueryResult>[
         InlineQueryResultArticle()
           ..id = 'flip'
           ..title = '🌝'

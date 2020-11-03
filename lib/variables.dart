@@ -52,7 +52,7 @@ String theOne(List<String> choices, String choice) =>
 *${choice}* has to be the one. 😉''';
 
 String letMeGoogle(String keywords) {
-  String query = keywords
+  var query = keywords
       .trim()
       .split(' ')
       .map((String str) => Uri.encodeQueryComponent(str))

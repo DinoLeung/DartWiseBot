@@ -7,9 +7,8 @@ import 'package:DartWiseBot/responds.dart';
 
 void main() {
   final telegram = Telegram(envVars['BOT_TOKEN']);
-  final webhook =
-      Webhook(telegram, envVars['HOST_URL'], envVars['BOT_TOKEN'], cert, key)
-        ..port = int.parse(envVars['BOT_PORT']);
+  final webhook = Webhook(telegram, envVars['HOST_URL'], envVars['BOT_TOKEN'])
+    ..port = int.parse(envVars['BOT_PORT']);
   final teledart = TeleDart(telegram, Event(), fetcher: webhook);
   final respond = Responds(teledart);
 

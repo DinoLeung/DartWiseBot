@@ -5,10 +5,10 @@ description: The Wise Bot reborn.
 # author: dinoleung <dino@330z.net>
 
 environment:
-  sdk: '>=2.1.0 <3.0.0'
+  sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
-  teledart: ^0.1.0
+  teledart: ^0.1.1
 
 dev_dependencies:
   pedantic: ^1.8.0+1

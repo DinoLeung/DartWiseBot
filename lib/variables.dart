@@ -10,10 +10,6 @@ final String root = Directory.fromUri(Platform.script).parent.parent.path;
 
 final Map<String, String> envVars = Platform.environment;
 
-final File cert = File(envVars['CERT_PATH']);
-
-final File key = File(envVars['KEY_PATH']);
-
 final String startMsg = File('${root}/txt/start').readAsStringSync();
 
 final String helpMsg = File('${root}/txt/help').readAsStringSync();

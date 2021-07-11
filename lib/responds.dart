@@ -7,11 +7,9 @@ import 'package:DartWiseBot/functions.dart';
 import 'variables.dart';
 
 class Responds {
-  static TeleDart _teledart;
+  final TeleDart _teledart;
 
-  Responds(TeleDart teledart) {
-    _teledart = teledart;
-  }
+  Responds(this._teledart);
 
   Future<Message> sendStartMessage(TeleDartMessage message) =>
       message.reply(startMsg);
@@ -47,8 +45,8 @@ class Responds {
           .reply(invalidSuggestions(hasUsername: commandHasUsername(message)));
     }
 
-    _teledart.telegram.sendMessage(int.parse(envVars['MYID']),
-        suggestionMsg(message.from.username, suggestions));
+    _teledart.telegram.sendMessage(int.parse(envVars['MYID']!),
+        suggestionMsg(message.from?.username ?? 'Someone', suggestions));
     return message.reply(validSuggestions);
   }
 
@@ -57,37 +55,41 @@ class Responds {
 
   Future<bool> answerInlineQuery(TeleDartInlineQuery inlineQuery) =>
       inlineQuery.answer(<InlineQueryResult>[
-        InlineQueryResultArticle()
-          ..id = 'flip'
-          ..title = '🌝'
-          ..input_message_content = (InputTextMessageContent()
-            ..message_text = coin()
-            ..parse_mode = 'markdown'),
-        InlineQueryResultArticle()
-          ..id = 'roll'
-          ..title = '🎲'
-          ..input_message_content = (InputTextMessageContent()
-            ..message_text = die()
-            ..parse_mode = 'markdown'),
-        InlineQueryResultArticle()
-          ..id = 'draw'
-          ..title = '🃏'
-          ..input_message_content = (InputTextMessageContent()
-            ..message_text = card()
-            ..parse_mode = 'markdown'),
-        InlineQueryResultArticle()
-          ..id = 'pick'
-          ..title = 'Pick from'
-          ..description = '🅰️, 🅱️,...'
-          ..input_message_content = (InputTextMessageContent()
-            ..message_text = pick(inlineQuery.query, false)
-            ..parse_mode = 'markdown'),
-        InlineQueryResultArticle()
-          ..id = 'learn'
-          ..title = 'Ask the wise...'
-          ..description = '🧙'
-          ..input_message_content = (InputTextMessageContent()
-            ..message_text = learn(inlineQuery.query)
-            ..parse_mode = 'markdown'),
+        InlineQueryResultArticle(
+            id: 'flip',
+            title: '🌝',
+            input_message_content: InputTextMessageContent(
+              message_text: coin(),
+              parse_mode: 'markdown',
+            )),
+        InlineQueryResultArticle(
+            id: 'roll',
+            title: '🎲',
+            input_message_content: InputTextMessageContent(
+              message_text: die(),
+              parse_mode: 'markdown',
+            )),
+        InlineQueryResultArticle(
+            id: 'card',
+            title: '🃏',
+            input_message_content: InputTextMessageContent(
+              message_text: card(),
+              parse_mode: 'markdown',
+            )),
+        InlineQueryResultArticle(
+            id: 'pick',
+            title: 'Pick from',
+            description: '🅰️, 🅱️,...',
+            input_message_content: InputTextMessageContent(
+              message_text: pick(inlineQuery.query, false),
+              parse_mode: 'markdown',
+            )),
+        InlineQueryResultArticle(
+            id: 'learn',
+            title: 'Ask the wise...',
+            description: '🧙',
+            input_message_content: InputTextMessageContent(
+                message_text: learn(inlineQuery.query),
+                parse_mode: 'markdown')),
       ]);
 }

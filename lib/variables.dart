@@ -4,20 +4,20 @@ import 'dart:io' show Platform;
 
 import 'package:teledart/model.dart' show User, BotCommand;
 
-User me;
+late User me;
 
 final String root = Directory.fromUri(Platform.script).parent.parent.path;
 
 final Map<String, String> envVars = Platform.environment;
 
-final String startMsg = File('${root}/txt/start').readAsStringSync();
+final String startMsg = File('$root/txt/start').readAsStringSync();
 
-final String helpMsg = File('${root}/txt/help').readAsStringSync();
+final String helpMsg = File('$root/txt/help').readAsStringSync();
 
 final String theHeartSutra =
-    File('${root}/txt/the_heart_sutra').readAsStringSync();
+    File('$root/txt/the_heart_sutra').readAsStringSync();
 
-final String githubMsg = File('${root}/txt/github').readAsStringSync();
+final String githubMsg = File('$root/txt/github').readAsStringSync();
 
 final List<String> suits = <String>['♠️', '♥️', '♣️', '♦️'];
 

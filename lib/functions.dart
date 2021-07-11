@@ -11,14 +11,17 @@ String card() =>
 
 String getCommandQuery(Message message) {
   var entity = message.entityOf('bot_command');
-  return message.text.substring(entity.offset + entity.length).trim();
+  if (entity == null) return '';
+  return message.text?.substring(entity.offset + entity.length).trim() ?? '';
 }
 
 bool commandHasUsername(Message message) {
   var entity = message.entityOf('bot_command');
+  if (entity == null) return false;
   return message.text
-      .substring(entity.offset, entity.offset + entity.length)
-      .contains('@${me.username}');
+          ?.substring(entity.offset, entity.offset + entity.length)
+          .contains('@${me.username}') ??
+      false;
 }
 
 String pick(String query, bool hasUsername) {

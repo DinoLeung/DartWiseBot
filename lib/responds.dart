@@ -45,13 +45,13 @@ class Responds {
           .reply(invalidSuggestions(hasUsername: commandHasUsername(message)));
     }
 
-    _teledart.telegram.sendMessage(int.parse(envVars['MYID']!),
+    _teledart.sendMessage(int.parse(envVars['MYID']!),
         suggestionMsg(message.from?.username ?? 'Someone', suggestions));
     return message.reply(validSuggestions);
   }
 
   Future<Message> sendDice(TeleDartMessage message) =>
-      _teledart.telegram.sendDice(message.chat.id);
+      _teledart.sendDice(message.chat.id);
 
   Future<bool> answerInlineQuery(TeleDartInlineQuery inlineQuery) =>
       inlineQuery.answer(<InlineQueryResult>[

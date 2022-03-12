@@ -8,7 +8,6 @@ environment:
   sdk: ">=2.14.0 <3.0.0"
 
 dependencies:
-  aws_lambda_dart_runtime: ^1.1.0
   teledart: ^0.3.4
 
 dev_dependencies:

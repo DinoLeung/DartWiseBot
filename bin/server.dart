@@ -18,7 +18,7 @@ Future<void> main() async {
 
   await teledart.setMyCommands(commands);
 
-  print('${me.username ?? 'Unknown bot'}. is running...');
+  print('${me.username ?? 'Unknown bot'} is starting...');
 
   teledart
     ..start()

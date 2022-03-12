@@ -11,8 +11,10 @@ class Responds {
 
   Responds(this._teledart);
 
-  Future<Message> sendStartMessage(TeleDartMessage message) =>
-      message.reply(startMsg);
+  Future<Message> sendStartMessage(TeleDartMessage message) {
+    print('Responding to start command');
+    return message.reply(startMsg);
+  }
 
   Future<Message> sendHelpMessage(TeleDartMessage message) =>
       message.reply(helpMsg, parse_mode: 'markdown');

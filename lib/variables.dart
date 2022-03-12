@@ -41,11 +41,11 @@ String invalidChoices({bool hasUsername = false}) =>
     'Huh? My hearing isn\'t too well. Try again with following pattern: \/pick${hasUsername ? '\@${me.username}' : ''} 🅰️, 🅱️,...';
 
 String oneChoice(String choice) =>
-    '${choice} is the one and the only one. Unlike the universe, there\'re multiple of them existing parallely.';
+    '$choice is the one and the only one. Unlike the universe, there\'re multiple of them existing parallely.';
 
 String theOne(List<String> choices, String choice) =>
     '''Out of ${choices.join(', ')}
-*${choice}* has to be the one. 😉''';
+*$choice* has to be the one. 😉''';
 
 String letMeGoogle(String keywords) {
   var query = keywords
@@ -55,7 +55,7 @@ String letMeGoogle(String keywords) {
       .toList()
       .join('+');
   return '''Any fool can know. The point is to understand.
-I found a lot regarding to *${keywords.trim()}* you could know [here](http://lmgtfy.com/?iie=1&q=${query}).
+I found a lot regarding to *${keywords.trim()}* you could know [here](http://lmgtfy.com/?iie=1&q=$query).
 But can you understand, it's entirely depends on you.''';
 }
 
@@ -66,7 +66,7 @@ final String validSuggestions =
     'May the universe be with you, I will look into this soon. 💪';
 
 String suggestionMsg(String username, String suggestions) =>
-    '@${username} suggested to ${suggestions}';
+    '@$username suggested to $suggestions';
 
 List<BotCommand> commands = <BotCommand>[
   BotCommand(command: '\/flip', description: 'flip a 🌝'),

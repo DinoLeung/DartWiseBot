@@ -1,4 +1,4 @@
-FROM google/dart-runtime
+FROM dart:stable
 
 ARG BOT_TOKEN
 ENV BOT_TOKEN=$BOT_TOKEN

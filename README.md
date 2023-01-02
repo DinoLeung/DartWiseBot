@@ -18,25 +18,30 @@ Just start a conversation to [@TheWiseBot](https://t.me/TheWiseBot), or add him 
 
 `/suggest` - suggest a decision making method
 
+`/about` - info about the bot
+
+`/help` - list all available commands
+
 ## dependancy
 
 [@TheWiseBot](https://t.me/TheWiseBot) is a weekend project, and just for the memes.
 Which powered by
 
-- [TeleDart](https://github.com/DinoLeung/TeleDart) - A Dart library wrapped the latest [Telegram Bot API](https://core.telegram.org/bots/api)
+- [TeleDart](https://github.com/DinoLeung/TeleDart) - A clean implementation of [Telegram bot API](https://core.telegram.org/bots/api)
 
 ## Deploy
 
 ### Usage
 
-Check out https://hub.docker.com/r/google/dart-runtime/
+Check out https://hub.docker.com/_/dart
 
 ### Environment variables
 
 ```
-BOT_TOKEN: <bot token obtain from @BotFather
+BOT_TOKEN: <bot token obtain from @BotFather>
+SECRET_TOKEN: <a random sha256 hash>
 MYID: <user id to send feedbacks to>
 HOST_URL: <webhook host url>
 BOT_PORT: <webhook port>
-SERVER_PORT: <serber internal port>
+SERVER_PORT: <server internal port>
 ```

@@ -8,7 +8,7 @@ Future<void> main() async {
   final telegram = Telegram(envVars['BOT_TOKEN']!);
   me = await telegram.getMe();
   final webhook = await Webhook.createHttpWebhok(telegram, envVars['HOST_URL']!,
-      secretToken: envVars['BOT_TOKEN']!,
+      secretToken: envVars['SECRET_TOKEN']!,
       port: int.parse(envVars['BOT_PORT']!),
       serverPort: int.parse(envVars['SERVER_PORT']!));
   final teledart =

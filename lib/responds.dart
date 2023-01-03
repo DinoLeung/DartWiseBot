@@ -21,8 +21,10 @@ class Responds {
   Future<Message> sendCoinMessage(TeleDartMessage message) =>
       message.reply(coin());
 
-  Future<Message> sendDieMessage(TeleDartMessage message) =>
-      message.reply(die());
+  // Future<Message> sendDieMessage(TeleDartMessage message) =>
+  //     message.reply(die());
+
+  Future<Message> sendDice(TeleDartMessage message) => message.replyDice();
 
   Future<Message> sendCardMessage(TeleDartMessage message) =>
       message.reply(card());
@@ -47,9 +49,6 @@ class Responds {
         suggestionMsg(message.from?.username ?? 'Someone', suggestions));
     return message.reply(validSuggestions);
   }
-
-  Future<Message> sendDice(TeleDartMessage message) =>
-      _teledart.sendDice(message.chat.id);
 
   Future<bool> answerInlineQuery(TeleDartInlineQuery inlineQuery) =>
       inlineQuery.answer(<InlineQueryResult>[

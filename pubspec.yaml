@@ -8,7 +8,7 @@ environment:
   sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
-  teledart: ^0.5.3
+  teledart: ^0.5.4
 
 dev_dependencies:
   lints: ^2.0.1
